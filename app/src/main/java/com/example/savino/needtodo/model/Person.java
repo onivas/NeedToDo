@@ -5,11 +5,13 @@ public class Person {
     String name;
     String surname;
     int age;
+    boolean bool;
 
-    public Person(String name, String surname, int age) {
+    public Person(String name, String surname, int age, boolean bool) {
         this.name = name;
         this.surname = surname;
         this.age = age;
+        this.bool = bool;
     }
 
     public String getName() {
@@ -24,6 +26,10 @@ public class Person {
         return age;
     }
 
+    public boolean isBool() {
+        return bool;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -32,6 +38,7 @@ public class Person {
         Person person = (Person) o;
 
         if (age != person.age) return false;
+        if (bool != person.bool) return false;
         if (name != null ? !name.equals(person.name) : person.name != null) return false;
         return surname != null ? surname.equals(person.surname) : person.surname == null;
 
@@ -42,6 +49,7 @@ public class Person {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + age;
+        result = 31 * result + (bool ? 1 : 0);
         return result;
     }
 }

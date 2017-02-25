@@ -1,10 +1,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="person"
-            type="com.example.savino.needtodo.model.Person" />
+            type="com.example.savino.needtodo.model.Person"/>
     </data>
 
     <RelativeLayout
@@ -35,7 +37,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/surname"
-            android:text="@{String.valueOf(person.age)}"/>
+            android:text="@{String.valueOf(person.age)}"
+            app:addLeftPadding="@{!person.bool}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/age"
+            android:text="@{String.valueOf(person.age)}"
+            app:addLeftPadding="@{person.bool}"/>
+
     </RelativeLayout>
 
 </layout>

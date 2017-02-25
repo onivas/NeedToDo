@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Person person = new Person("Savino", "Ordine", 32);
+        Person person = new Person("Savino", "Ordine", 32, true);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.setPerson(person);
