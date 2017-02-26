@@ -47,14 +47,6 @@
             android:text="@{String.valueOf(person.age)}"
             app:addLeftPadding="@{person.bool}"/>
 
-
-        <fragment
-            android:id="@+id/main_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:name="com.example.savino.needtodo.MainFragment" />
-
     </RelativeLayout>
 
 </layout>
