@@ -13,6 +13,12 @@ import android.widget.TextView;
 
 public class MainFragment extends Fragment {
 
+    public static MainFragment newInstance() {
+        MainFragment fragment = new MainFragment();
+        // You can create a Bundle and setArguments at the fragment
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
