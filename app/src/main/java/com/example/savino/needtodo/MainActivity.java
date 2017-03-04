@@ -2,7 +2,6 @@ package com.example.savino.needtodo;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.savino.needtodo.databinding.ActivityMainBinding;
@@ -23,10 +22,5 @@ public class MainActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.setPerson(person);
 
-        MainFragment mainFragment = MainFragment.newInstance();
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.activity_main, mainFragment);
-        fragmentTransaction.commit();
     }
 }
