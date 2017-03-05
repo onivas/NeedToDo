@@ -10,3 +10,4 @@ Add hash commit at this url: https://github.com/onivas/NeedToDo/commit/(paste-ha
 - Data Binding: 5fd5eccd91cd266d8a2f0f232a62646ba0b6f8f4
 - Fragment (inserted programmatically) 4e9e7678119ac9a51d7c49ac0aab453ae7497036
 - Fragment (inserted directly in XML layout) 9ae3c9661163c5fc12a2ca376e60e2992460556a
+- Span/CustomSpan SpannableString/Builder ![alt text](https://github.com/onivas/NeedToDo/blob/master/span.png)
