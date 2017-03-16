@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import rx.Observable;
-import rx.functions.Action1;
 import rx.functions.Func2;
 import rx.subjects.PublishSubject;
 
@@ -27,23 +26,29 @@ public class MainActivity extends AppCompatActivity {
 
         Observable<List<String>> backendValues = Observable.just(list);
 
-        mRefresh
-                .startWith(Observable.just(null))   // this is used to start the chain for the first time without calling onNext
+        Observable<Void> withLatestFrom = mRefresh
                 .withLatestFrom(backendValues, new Func2<Void, List<String>, Void>() {
                     @Override
                     public Void call(Void aVoid, List<String> stringList) {
-                        Log.d(TAG,  "withLatestFrom");
+                        Log.d(TAG, "withLatestFrom");
                         return null;
                     }
-                })
-                .subscribe(new Action1<Void>() {
-                    @Override
-                    public void call(Void aVoid) {
-                        Log.d(TAG,  list.toString());
-                    }
+                }).share(); // this is useful when i do a network call and share the result to all the subscriber instead to call again the network
+
+        withLatestFrom
+                .subscribe(aVoid -> {
+                    Log.d(TAG, "1 " + list.toString());
                 });
 
-        mRefresh.onNext(null);  // this start the chain again - A kind of refresh way for the user
+        withLatestFrom
+                .subscribe(aVoid -> {
+                    Log.d(TAG, "2 " +list.toString());
+                });
 
+        mRefresh.onNext(null);
+
+    // D/>>>>> TAG:: withLatestFrom     <--- here is onNext
+    // D/>>>>> TAG:: 1 [dive, hello]
+    // D/>>>>> TAG:: 2 [dive, hello]    <--- this does not call withLatestFrom
     }
 }
