@@ -9,7 +9,6 @@ import java.util.List;
 
 import rx.Observable;
 import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.functions.Func2;
 import rx.subjects.PublishSubject;
 
@@ -17,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = ">>>>> TAG: ";
 
-    PublishSubject<String> mUserInput = PublishSubject.create();
+    PublishSubject<Void> mRefresh = PublishSubject.create();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,31 +27,23 @@ public class MainActivity extends AppCompatActivity {
 
         Observable<List<String>> backendValues = Observable.just(list);
 
-        mUserInput
-                .withLatestFrom(backendValues, new Func2<String, List<String>, String>() {
+        mRefresh
+                .startWith(Observable.just(null))   // this is used to start the chain for the first time without calling onNext
+                .withLatestFrom(backendValues, new Func2<Void, List<String>, Void>() {
                     @Override
-                    public String call(String s, List<String> stringList) {
-                        Log.d(TAG, "withLatestFrom " + s);
-                        return s.toLowerCase();
+                    public Void call(Void aVoid, List<String> stringList) {
+                        Log.d(TAG,  "withLatestFrom");
+                        return null;
                     }
                 })
-                .filter(new Func1<String, Boolean>() {
+                .subscribe(new Action1<Void>() {
                     @Override
-                    public Boolean call(String s) {
-                        Log.d(TAG, "filter " + s);
-                        return list.contains(s);
-                    }
-                })
-                .subscribe(new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                        Log.d(TAG, "subscribe " + s);
+                    public void call(Void aVoid) {
+                        Log.d(TAG,  list.toString());
                     }
                 });
 
-        mUserInput.onNext("dede");
-        mUserInput.onNext("dive");
-        mUserInput.onNext("hello");
+        mRefresh.onNext(null);  // this start the chain again - A kind of refresh way for the user
 
     }
 }
