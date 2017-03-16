@@ -1,60 +1,58 @@
 package com.example.savino.needtodo;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-import com.example.savino.needtodo.databinding.ActivityMainBinding;
-import com.example.savino.needtodo.model.Stargazers;
-import com.example.savino.needtodo.networking.ApiManagerImpl;
-
+import java.util.Arrays;
 import java.util.List;
 
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
+import rx.Observable;
 import rx.functions.Action1;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
+import rx.functions.Func1;
+import rx.functions.Func2;
+import rx.subjects.PublishSubject;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = ">>>>>> RETROFIT:";
-    private ActivityMainBinding mBinding;
-    private ApiManagerImpl mApiManager;
+    public static final String TAG = ">>>>> TAG: ";
 
-    CompositeSubscription mCompositeSubscription = new CompositeSubscription();
+    PublishSubject<String> mUserInput = PublishSubject.create();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        List<String> list = Arrays.asList("dive", "hello");
 
-        mApiManager = new ApiManagerImpl();
+        Observable<List<String>> backendValues = Observable.just(list);
 
-        Subscription subscribe = mApiManager.listStargazers("onivas", "MenuAnimation")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<Stargazers>>() {
+        mUserInput
+                .withLatestFrom(backendValues, new Func2<String, List<String>, String>() {
                     @Override
-                    public void call(List<Stargazers> stargazerses) {
-                        if (stargazerses.size() > 1) {
-                            Stargazers stargazers = stargazerses.get(0);
-                            mBinding.name.setText(stargazers.getLogin());
-                            mBinding.surname.setText(stargazers.getAvatar());
-                            mBinding.age.setText(stargazers.getId());
-                        }
+                    public String call(String s, List<String> stringList) {
+                        Log.d(TAG, "withLatestFrom " + s);
+                        return s.toLowerCase();
+                    }
+                })
+                .filter(new Func1<String, Boolean>() {
+                    @Override
+                    public Boolean call(String s) {
+                        Log.d(TAG, "filter " + s);
+                        return list.contains(s);
+                    }
+                })
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        Log.d(TAG, "subscribe " + s);
                     }
                 });
 
-        mCompositeSubscription.add(subscribe);
-    }
+        mUserInput.onNext("dede");
+        mUserInput.onNext("dive");
+        mUserInput.onNext("hello");
 
-    @Override
-    protected void onStop() {
-        if (mCompositeSubscription != null) {
-            mCompositeSubscription.unsubscribe();
-        }
-        super.onStop();
     }
 }
