@@ -2,6 +2,7 @@
 
 Every commit is a topic of the list. 
 
+- [Abstract class](https://github.com/onivas/NeedToDo/commit/1ba967ef224e123bc7bbe593b9792708586216fb)
 - [BindingAdapter](https://github.com/onivas/NeedToDo/commit/f393418439a51238fd79113641a348951cf92e46)
 - [Converting dp2px - px2dp](https://github.com/onivas/NeedToDo/commit/d6db1337213788f0f900b4405592f7c463175aa4)
 - [Dagger example1](https://github.com/onivas/NeedToDo/commit/c8029521d9491f735e334d985110f26f38785ffe)
