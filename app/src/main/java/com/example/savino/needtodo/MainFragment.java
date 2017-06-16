@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements MainActivity.onButtonClicked{
+
+    private TextView mActivityResult;
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
@@ -29,7 +31,7 @@ public class MainFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final TextView resultText = (TextView) view.findViewById(R.id.text_with_no_spaces);
+        mActivityResult = (TextView) view.findViewById(R.id.text_with_no_spaces);
         final EditText text = (EditText) view.findViewById(R.id.type_text);
         Button button = (Button) view.findViewById(R.id.button);
 
@@ -37,12 +39,18 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String resultString = replaceSpaceWithDash(text.getText().toString());
-                resultText.setText(resultString);
+                mActivityResult.setText(resultString);
             }
         });
     }
 
     private String replaceSpaceWithDash(String s) {
         return s.replaceAll(" ", "-");
+    }
+
+
+    @Override
+    public void buttonClicked(String editTextValue) {
+        mActivityResult.setText(editTextValue);
     }
 }
