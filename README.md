@@ -9,6 +9,7 @@ Every commit is a topic of the list.
 - [Data Binding](https://github.com/onivas/NeedToDo/commit/5fd5eccd91cd266d8a2f0f232a62646ba0b6f8f4)
 - [Fragment (inserted programmatically)](https://github.com/onivas/NeedToDo/commit/4e9e7678119ac9a51d7c49ac0aab453ae7497036)
 - [Fragment (inserted directly in XML layout)](https://github.com/onivas/NeedToDo/commit/9ae3c9661163c5fc12a2ca376e60e2992460556a)
+- [Gson - local json parse](https://github.com/onivas/NeedToDo/commit/c13e6fadc8c41ac65c6adea19cdbd8907b218a8b)
 - [RxJava basic integration (with Retrofit call)](https://github.com/onivas/NeedToDo/commit/5c3996c15a595d41acde458b23a5abb33d65215a)
 - [Retrofit (calling repos/../stargazers api)](https://github.com/onivas/NeedToDo/commit/f5ddb6bbf93ba0f5689abb60159b31da8429c5cd)
 - [Span/CustomSpan SpannableString/Builder](https://github.com/onivas/NeedToDo/commit/9986f295b04cf7a4b06c22bbf077e7d3d0286648)
