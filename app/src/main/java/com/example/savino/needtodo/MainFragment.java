@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.savino.needtodo.Utils.JsonUtils;
+import com.example.savino.needtodo.model.ListingItem;
+
 
 public class MainFragment extends Fragment implements MainActivity.onButtonClicked{
 
@@ -42,6 +45,15 @@ public class MainFragment extends Fragment implements MainActivity.onButtonClick
                 mActivityResult.setText(resultString);
             }
         });
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        JsonUtils jsonUtils = new JsonUtils(getContext());
+        ListingItem[] listingItems = jsonUtils.parseListingJson();
+
     }
 
     private String replaceSpaceWithDash(String s) {

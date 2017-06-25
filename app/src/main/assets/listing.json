@@ -1,0 +1,61 @@
+{
+  "title": "Titolo del json",
+  "subtitle": "Sotto titolo",
+  "elements": [
+    {
+      "key": 1,
+      "value": "Auto",
+      "weight": 1
+    },
+    {
+      "key": 2,
+      "value": "Moto",
+      "weight": 2
+    },
+    {
+      "key": 3,
+      "value": "Trattore",
+      "weight": 4
+    },
+    {
+      "key": 4,
+      "value": "Bici",
+      "weight": 3
+    },
+    {
+      "key": 5,
+      "value": "Camion",
+      "weight": 21
+    },
+    {
+      "key": 6,
+      "value": "Bici",
+      "weight": 11
+    },
+    {
+      "key": 7,
+      "value": "Camion",
+      "weight": 8
+    },
+    {
+      "key": 8,
+      "value": "Bici",
+      "weight": 30
+    },
+    {
+      "key": 9,
+      "value": "Camion",
+      "weight": 9
+    },
+    {
+      "key": 10,
+      "value": "Bici",
+      "weight": 34
+    },
+    {
+      "key": 11,
+      "value": "Camion",
+      "weight": 55
+    }
+  ]
+}
